@@ -1,0 +1,157 @@
+.reflections-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.reflections-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.reflections-header .header-content {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 20px 50px;
+}
+
+.reflections-header .year-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.reflections-header .year-number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  font-family: 'Caveat', cursive;
+}
+
+.reflections-header .year-btn {
+  background: transparent;
+  border: 1.5px solid var(--text-primary);
+  padding: 4px;
+  color: var(--text-primary);
+  display: flex;
+  cursor: pointer;
+}
+
+.reflections-header .year-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.reflections-header h2 {
+  font-size: 2.5rem;
+  font-family: 'Caveat', cursive;
+  margin: 0;
+}
+
+.reflections-page .tape {
+  position: absolute;
+  width: 80px;
+  height: 25px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  z-index: 1;
+}
+
+.reflections-page .tape-left {
+  left: calc(50% - 160px);
+  top: -8px;
+  transform: rotate(-35deg);
+}
+
+.reflections-page .tape-right {
+  right: calc(50% - 160px);
+  top: -8px;
+  transform: rotate(35deg);
+}
+
+.progress-indicator {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.progress-indicator span {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.progress-bar {
+  width: 200px;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--text-primary);
+  margin: 10px auto 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--text-primary);
+}
+
+.reflections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.reflection-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px dashed var(--text-primary);
+}
+
+.card-icon {
+  color: var(--text-primary);
+}
+
+.card-header h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.reflection-card textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.reflection-card textarea:focus {
+  outline: none;
+}
+
+.reflection-card textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .reflections-grid {
+    grid-template-columns: 1fr;
+  }
+}

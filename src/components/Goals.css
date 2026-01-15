@@ -1,0 +1,322 @@
+.goals-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.goals-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.goals-header .header-content {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 20px 50px;
+}
+
+.goals-header .year-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.goals-header .year-number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  font-family: 'Caveat', cursive;
+}
+
+.goals-header .year-btn {
+  background: transparent;
+  border: 1.5px solid var(--text-primary);
+  padding: 4px;
+  color: var(--text-primary);
+  display: flex;
+  cursor: pointer;
+}
+
+.goals-header .year-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.goals-header h2 {
+  font-size: 2.5rem;
+  font-family: 'Caveat', cursive;
+  margin: 0;
+}
+
+.goals-page .tape {
+  position: absolute;
+  width: 80px;
+  height: 25px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  z-index: 1;
+}
+
+.goals-page .tape-left {
+  left: calc(50% - 140px);
+  top: -8px;
+  transform: rotate(-35deg);
+}
+
+.goals-page .tape-right {
+  right: calc(50% - 140px);
+  top: -8px;
+  transform: rotate(35deg);
+}
+
+.goals-page .progress-indicator {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.goals-page .progress-indicator span {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.goals-page .progress-bar {
+  width: 200px;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--text-primary);
+  margin: 10px auto 0;
+  overflow: hidden;
+}
+
+.goals-page .progress-fill {
+  height: 100%;
+  background: var(--text-primary);
+}
+
+.add-goal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: var(--bg-secondary);
+  border: 2px dashed var(--text-primary);
+  color: var(--text-primary);
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.add-goal-btn:hover {
+  background: var(--bg-tertiary);
+}
+
+.add-goal-form {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid var(--text-primary);
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.form-row input:focus {
+  outline: none;
+  background: var(--bg-secondary);
+}
+
+.submit-btn {
+  padding: 12px 25px;
+  background: var(--text-primary);
+  border: 2px solid var(--text-primary);
+  color: var(--bg-secondary);
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.category-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1.5px solid var(--text-primary);
+  color: var(--text-primary);
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.category-btn:hover {
+  background: var(--bg-tertiary);
+}
+
+.category-btn.selected {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state svg {
+  opacity: 0.5;
+  margin-bottom: 15px;
+}
+
+.empty-state h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+}
+
+.empty-state p {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.category-section {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  overflow: hidden;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  background: var(--bg-tertiary);
+  border-bottom: 2px solid var(--text-primary);
+  color: var(--text-primary);
+}
+
+.category-header h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  margin: 0;
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.category-count {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--text-primary);
+  padding: 4px 10px;
+}
+
+.category-goals {
+  padding: 10px;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+}
+
+.goal-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.goal-item.completed .goal-text {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.check-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--text-primary);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.goal-item.completed .check-btn {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.goal-text {
+  flex: 1;
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+}
+
+.delete-btn {
+  padding: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  opacity: 0;
+  cursor: pointer;
+}
+
+.goal-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .submit-btn {
+    width: 100%;
+  }
+}

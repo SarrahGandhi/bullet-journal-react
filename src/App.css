@@ -1,0 +1,58 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  background: var(--bg-primary);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 80px; /* Account for fixed sidebar */
+  padding: 30px 40px;
+  max-width: calc(1200px + 80px);
+  width: 100%;
+  min-height: 100vh;
+  /* Paper effect */
+  background: 
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    var(--bg-primary);
+  background-size: 25px 25px;
+  position: relative;
+}
+
+/* Page edge shadow from sidebar */
+.main-content::before {
+  content: '';
+  position: fixed;
+  left: 80px;
+  top: 0;
+  width: 15px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.08), transparent);
+  pointer-events: none;
+  z-index: 50;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 60px;
+    padding: 20px;
+  }
+
+  .main-content::before {
+    left: 60px;
+    width: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    margin-left: 50px;
+    padding: 16px;
+  }
+
+  .main-content::before {
+    left: 50px;
+    width: 8px;
+  }
+}

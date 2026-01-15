@@ -1,0 +1,221 @@
+.day-view {
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeIn 0.3s ease;
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 16px;
+}
+
+.day-info {
+  text-align: center;
+}
+
+.day-info h2 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  font-family: 'Caveat', cursive;
+}
+
+.day-date {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  font-family: 'Caveat', cursive;
+}
+
+.today-btn {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1.5px solid var(--text-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Caveat', cursive;
+  cursor: pointer;
+}
+
+.today-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.day-nav-btn {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.day-nav-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.day-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Mood Section */
+.mood-section {
+  background: var(--bg-secondary);
+  padding: 24px;
+  border: 2px solid var(--text-primary);
+}
+
+.mood-section h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+}
+
+.mood-selector {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mood-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: transparent;
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  min-width: 90px;
+  font-family: 'Caveat', cursive;
+}
+
+.mood-option:hover {
+  background: var(--bg-tertiary);
+}
+
+.mood-option.selected {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.mood-option span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Notes Grid */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Note Cards */
+.note-card {
+  background: var(--bg-secondary);
+  padding: 24px;
+  border: 2px solid var(--text-primary);
+}
+
+.note-card h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-family: 'Caveat', cursive;
+}
+
+.note-prompt {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-family: 'Caveat', cursive;
+}
+
+.note-card textarea {
+  width: 100%;
+  padding: 16px;
+  background: var(--bg-tertiary);
+  border: 1.5px solid var(--border-light);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  resize: vertical;
+  font-family: 'Caveat', cursive;
+}
+
+.note-card textarea:focus {
+  outline: none;
+  border-color: var(--text-primary);
+}
+
+.note-card textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.main-notes textarea {
+  min-height: 200px;
+}
+
+/* Save Button */
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: var(--text-primary);
+  border: 2px solid var(--text-primary);
+  color: var(--bg-secondary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: center;
+  font-family: 'Caveat', cursive;
+}
+
+.save-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.save-btn.saved {
+  background: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .day-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mood-option {
+    padding: 12px 16px;
+    min-width: 70px;
+  }
+
+  .mood-option svg {
+    width: 20px;
+    height: 20px;
+  }
+}

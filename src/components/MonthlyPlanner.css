@@ -1,0 +1,248 @@
+.monthly-planner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.binder-rings {
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  bottom: 40px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ring {
+  width: 20px;
+  height: 40px;
+  border: 2px solid var(--text-primary);
+  border-radius: 2px;
+  background: var(--bg-tertiary);
+}
+
+.planner-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.month-title {
+  font-family: 'Caveat', cursive;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.month-nav-btn {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 8px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.month-nav-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+}
+
+.planner-spread {
+  display: flex;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.planner-page {
+  flex: 1;
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 20px;
+  min-height: 600px;
+}
+
+.left-page {
+  border-right: 1px solid var(--text-primary);
+}
+
+.right-page {
+  border-left: 1px solid var(--text-primary);
+}
+
+.page-fold {
+  position: absolute;
+  left: 50%;
+  top: 60px;
+  bottom: 20px;
+  width: 2px;
+  background: var(--text-primary);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.weekday-headers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-bottom: 1px;
+  border-bottom: 2px solid var(--text-primary);
+  padding-bottom: 10px;
+}
+
+.weekday-headers span {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  font-family: 'Caveat', cursive;
+}
+
+.weekend-headers {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.days-grid {
+  display: grid;
+  gap: 0;
+}
+
+.left-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.right-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.day-cell {
+  border: 1px solid var(--border-light);
+  aspect-ratio: 1;
+  padding: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+}
+
+.day-cell:hover:not(.empty) {
+  background: var(--bg-tertiary);
+}
+
+.day-cell.empty {
+  background: transparent;
+  border-color: transparent;
+}
+
+.day-cell.today {
+  border: 2px solid var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.day-number {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: absolute;
+  top: 5px;
+  left: 8px;
+}
+
+.day-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--text-primary);
+  padding-top: 25px;
+  width: 100%;
+}
+
+.day-input:focus {
+  outline: none;
+}
+
+.right-content {
+  display: flex;
+  gap: 15px;
+  height: 100%;
+}
+
+.weekend-section {
+  flex: 3;
+}
+
+.notes-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--text-primary);
+  overflow: hidden;
+}
+
+.notes-header {
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--text-primary);
+  background: var(--bg-tertiary);
+  font-family: 'Caveat', cursive;
+}
+
+.notes-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  padding: 12px;
+}
+
+.notes-input:focus {
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .planner-spread {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .left-page, .right-page {
+    border: 2px solid var(--text-primary);
+  }
+
+  .page-fold, .binder-rings {
+    display: none;
+  }
+
+  .right-content {
+    flex-direction: column;
+  }
+
+  .notes-section {
+    min-height: 150px;
+  }
+
+  .month-title {
+    font-size: 2.5rem;
+  }
+}
