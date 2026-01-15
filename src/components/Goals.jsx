@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, Plus, Trash2, Check, Circle, Target, Briefcase, Heart, Sparkles, BookOpen, Dumbbell } from 'lucide-react'
+import { fetchGoals, addGoal as addGoalToDb, updateGoal, deleteGoal as deleteGoalFromDb } from '../lib/journalService'
 import './Goals.css'
 
 const GOAL_CATEGORIES = [
@@ -14,22 +15,26 @@ const GOAL_CATEGORIES = [
 function Goals({ selectedDate, setSelectedDate }) {
   const currentYear = selectedDate.getFullYear()
   
-  const [goals, setGoals] = useState(() => {
-    const saved = localStorage.getItem(`journal-goals-${currentYear}`)
-    return saved ? JSON.parse(saved) : []
-  })
-
+  const [goals, setGoals] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [newGoal, setNewGoal] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('personal')
   const [showAddForm, setShowAddForm] = useState(false)
 
+  // Load goals from Supabase
   useEffect(() => {
-    localStorage.setItem(`journal-goals-${currentYear}`, JSON.stringify(goals))
-  }, [goals, currentYear])
-
-  useEffect(() => {
-    const saved = localStorage.getItem(`journal-goals-${currentYear}`)
-    setGoals(saved ? JSON.parse(saved) : [])
+    const loadGoals = async () => {
+      setIsLoading(true)
+      try {
+        const data = await fetchGoals(currentYear)
+        setGoals(data)
+      } catch (error) {
+        console.error('Error loading goals:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadGoals()
   }, [currentYear])
 
   const changeYear = (delta) => {
@@ -38,26 +43,50 @@ function Goals({ selectedDate, setSelectedDate }) {
     setSelectedDate(newDate)
   }
 
-  const addGoal = () => {
+  const addGoal = async () => {
     if (!newGoal.trim()) return
-    setGoals(prev => [...prev, {
+    const goal = {
       id: Date.now(),
       text: newGoal,
       category: selectedCategory,
       completed: false
-    }])
+    }
+    // Update local state immediately
+    setGoals(prev => [...prev, goal])
     setNewGoal('')
     setShowAddForm(false)
+    // Save to Supabase
+    try {
+      await addGoalToDb(currentYear, goal)
+    } catch (error) {
+      console.error('Error adding goal:', error)
+    }
   }
 
-  const toggleGoal = (id) => {
-    setGoals(prev => prev.map(goal => 
-      goal.id === id ? { ...goal, completed: !goal.completed } : goal
+  const toggleGoal = async (id) => {
+    const goal = goals.find(g => g.id === id)
+    const newCompleted = !goal.completed
+    // Update local state immediately
+    setGoals(prev => prev.map(g => 
+      g.id === id ? { ...g, completed: newCompleted } : g
     ))
+    // Save to Supabase
+    try {
+      await updateGoal(currentYear, id, { completed: newCompleted })
+    } catch (error) {
+      console.error('Error toggling goal:', error)
+    }
   }
 
-  const deleteGoal = (id) => {
-    setGoals(prev => prev.filter(goal => goal.id !== id))
+  const deleteGoal = async (id) => {
+    // Update local state immediately
+    setGoals(prev => prev.filter(g => g.id !== id))
+    // Delete from Supabase
+    try {
+      await deleteGoalFromDb(currentYear, id)
+    } catch (error) {
+      console.error('Error deleting goal:', error)
+    }
   }
 
   const completedCount = goals.filter(g => g.completed).length
@@ -132,7 +161,12 @@ function Goals({ selectedDate, setSelectedDate }) {
         </div>
       )}
 
-      {goals.length === 0 ? (
+      {isLoading ? (
+        <div className="empty-state">
+          <Target size={48} />
+          <h3>Loading goals...</h3>
+        </div>
+      ) : goals.length === 0 ? (
         <div className="empty-state">
           <Target size={48} />
           <h3>No goals yet</h3>

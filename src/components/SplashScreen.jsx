@@ -67,7 +67,7 @@ const DAILY_DESIGNS = [
 const getTodaysDesign = () => {
   const today = new Date();
   const dayOfYear = Math.floor(
-    (today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24)
+    (today - new Date(today.getFullYear(), 0, 0)) / (100 * 60 * 60 * 24)
   );
   const index = dayOfYear % DAILY_DESIGNS.length;
   return DAILY_DESIGNS[index];

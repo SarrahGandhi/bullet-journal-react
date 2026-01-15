@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight, Star, Heart, Lightbulb, Target, Sparkles, Smile } from 'lucide-react'
+import { fetchReflections, saveReflection } from '../lib/journalService'
 import './Reflections.css'
 
 const REFLECTION_PROMPTS = [
@@ -15,22 +16,41 @@ function Reflections({ selectedDate, setSelectedDate }) {
   const currentYear = selectedDate.getFullYear()
   const reflectionYear = currentYear - 1
   
-  const [reflections, setReflections] = useState(() => {
-    const saved = localStorage.getItem(`journal-reflections-${reflectionYear}`)
-    return saved ? JSON.parse(saved) : {}
-  })
+  const [reflections, setReflections] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const saveTimeoutRef = useRef({})
 
+  // Load reflections from Supabase
   useEffect(() => {
-    localStorage.setItem(`journal-reflections-${reflectionYear}`, JSON.stringify(reflections))
-  }, [reflections, reflectionYear])
-
-  useEffect(() => {
-    const saved = localStorage.getItem(`journal-reflections-${reflectionYear}`)
-    setReflections(saved ? JSON.parse(saved) : {})
+    const loadReflections = async () => {
+      setIsLoading(true)
+      try {
+        const data = await fetchReflections(reflectionYear)
+        setReflections(data)
+      } catch (error) {
+        console.error('Error loading reflections:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadReflections()
   }, [reflectionYear])
 
   const handleChange = (id, value) => {
+    // Update local state immediately
     setReflections(prev => ({ ...prev, [id]: value }))
+    
+    // Debounce save to Supabase (save 500ms after user stops typing)
+    if (saveTimeoutRef.current[id]) {
+      clearTimeout(saveTimeoutRef.current[id])
+    }
+    saveTimeoutRef.current[id] = setTimeout(async () => {
+      try {
+        await saveReflection(reflectionYear, id, value)
+      } catch (error) {
+        console.error('Error saving reflection:', error)
+      }
+    }, 500)
   }
 
   const changeYear = (delta) => {
